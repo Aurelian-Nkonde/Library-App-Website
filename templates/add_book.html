@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load tailwind_filters %}
+
+<div class="container py-20 px-10 mx-auto">
+    <div class="max-w-2xl mx-auto bg-gray-200 p-7">
+        <h1 class="font-sans-serif text-4xl mb-4">Add a book</h1>
+        <form action="" method="POST">
+            <div class="FormHelper">
+                {% csrf_token %}
+                {{ form|crispy }}
+            </div>
+            <button type="submit" value="submit" class="mt-4 bg-blue-400 font-sans py-2 px-8">submit</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

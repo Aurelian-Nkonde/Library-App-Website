@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <title>Library Website</title>
+</head>
+<body>
+    
+    <header class="bg-green-900 py-6 px-5 flex justify-around items-center">
+        <h1 class="text-blue-100 font-extrabold text-3xl font-sans-serif capitalize tracking-wider">library_<span class="text-red-600 font-sans">site</span></h1>
+        <ul class="flex">
+            <li><a href="{% url 'index' %}" class="mr-3 font-sans border-2 py-1 px-3 border-transparent hover:border-blue-200 mb-5 transition ease-in-out duration-300 text-blue-100 text-lg tracking-wider">Home</a></li>
+            <li><a href="{% url 'library' %}" class="mr-3 font-sans border-2 py-1 px-3 border-transparent hover:border-blue-200 mb-5 transition ease-in-out duration-300 text-blue-100 text-lg tracking-wider">Library</a></li>
+            <li><a href="{% url 'about' %}" class="mr-3 font-sans border-2 py-1 px-3 border-transparent hover:border-blue-200 mb-5 transition ease-in-out duration-300 text-blue-100 text-lg tracking-wider">About</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'profile' %}" class="mr-3 font-sans border-2 py-1 px-3 border-blue-200 hover:border-transparent mb-5 transition ease-in-out duration-300 text-blue-300 text-lg tracking-wider">Profile</a></li>
+            <li><a href="{% url 'logout' %}" class="mr-3 font-sans border-2 py-1 px-3 border-red-200 hover:border-transparent  mb-5 transition ease-in-out duration-300 text-red-300 text-lg tracking-wider">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}" class="mr-3 font-sans border-2 py-1 px-3 border-green-200 hover:border-transparent mb-5 transition ease-in-out duration-300 text-green-300 text-lg tracking-wider">Login</a></li>
+            <li><a href="{% url 'register' %}" class="mr-3 font-sans border-2 py-1 px-3 border-green-200 hover:border-transparent mb-5 transition ease-in-out duration-300 text-green-300 text-lg tracking-wider">Register</a></li>
+            {% endif %}
+        </ul>
+    </header>
+
+    {% block content %}
+    {% endblock content %}
+
+    <footer class="bg-gray-800 p-10">
+        <div class="container mx-auto p-5">
+            <h1 class="font-sans-serif text-lg text-white capitalize tracking-wider">developed by <a href="#" class="text-green-200">@Aurelian</a></h1>
+        </div>
+    </footer>
+
+</body>
+</html>

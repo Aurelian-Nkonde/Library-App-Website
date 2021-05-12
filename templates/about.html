@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="py-10 bg-green-100">
+        <div class="container my-10 mx-10 mx-auto">
+            <div class="max-w-3xl mx-auto">
+                <h1 class="font-sans-serif text-center mb-5 text-3xl text-gray-800 tracking-wider capitalize">About Oop_Library</h1>
+                <p class="font-sans text-base leading-6 text-center mb-7">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae hic ex vero cum nulla saepe voluptate odit eos, sunt nihil perferendis ut consequatur eum dolorem atque doloribus laboriosam libero sit!</p>
+                <div class="flex justify-center flex-col items-center">
+                    <h1 class="font-sans-serif text-2xl tracking-wider font-bold mb-1">Reading is power!</h1>
+                    <p class="font-sans-serif mb-5 text-base tracking-wide">wanna connect fast ?</p>
+                    <div class="">
+                        <form action="">
+                            {% csrf_token %}
+                            <div class="mb-4">
+                                <input type="text" class="font-sans  rounded-t-lg py-2 px-3 text-base text-gray-900 shadow-lg border-b-2 border-blue-800 outline-none" placeholder="text">
+                            </div>
+                           <div class="flex flex-col justify-center items-center">
+                                <input type="submit" value="send" class="text-center font-sans-serif text-base bg-green-400 py-2 outline-none rounded-full px-8">
+                            </form>
+                           </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

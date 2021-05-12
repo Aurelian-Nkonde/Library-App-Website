@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load tailwind_filters %}
+{% load crispy_forms_tags %}
+
+    <div class="container py-20 px-10 mx-auto">
+        <div class="max-w-2xl mx-auto bg-gray-200 p-7">
+            <form action="" method="POST">
+                <div class="FormHelper">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                </div>
+                <button type="submit" value="submit" class="mt-4 bg-green-400 font-sans py-2 px-8">Login</button>
+            </form>
+            <hr>
+            <div class="flex items-center mt-4">
+                <input type="checkbox" name="" id="" class="mr-3">
+                <p class="font-sans text-base">Remember Me</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

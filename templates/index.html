@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <!-- showcasing -->
+    <div class="p-5" style="height: 80vh; display: flex; align-items: center; background: url('/static/img/bg_01.jpg'); background-size: cover; background-position: top; background-repeat: no-repeat;">
+        <div class="container mx-auto p-10">
+            <div class="flex flex-col justify-center items-center">
+                <div class="font-sans-serif py-5 font-bold text-4xl text-gray-200 tracking-wider uppercase "><span>tf</span> library official</div>
+                <div class="max-w-2xl mx-auto pt-2 pb-6">
+                    <p class="font-sans text-center text-lg leading-6  text-white tracking-wider">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta nihil quam impedit. Saepe quisquam vel voluptas modi.</p>
+                </div>
+                <a href="{% url 'library' %}" class="font-sans text-1xl text-white capitalize tracking-wider bg-red-600 transition ease-in-out duration-150 hover:bg-red-500 border-none py-2 px-6 outline-none">visit Library</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-5 mt-20">
+        <div class="max-w-5xl mx-auto">
+            <h1 class="font-sans-serif py-6 text-4xl font-weight text-gray-600 tracking-wider">latest books !</h1>
+            <div class="grid grid-cols-3 gap-4">
+                {%if latest_added_books%}
+                    {% for books in latest_added_books %}
+                    <div class="flex  flex-col cursor-pointer shadow-lg ">
+                        <img src="/static/img/bg2.jpg" alt="default" class="h-60">
+                        <div class="bg-gray-200 px-3 py-6 border-l-2 border-green-200">
+                            <h1 class="font-sans-serif text-lg text-gray-800 tracking-wider capitalize font-bold">{{ books.title }}</h1>
+                            <h1 class="font-sans-serif text-lg mb-6 text-gray-900 tracking-wider capitalize font-bold">by: <span class="font-light">{{ books.author }}</span></h1>
+                            <a href="{% url 'book_detail' books.id %}" class="font-sans-serif  text-lg text-white tracking-wider font-bold capitalize bg-green-600 transition ease-in-out duration-150 shadow-lg hover:bg-green-400 py-2 px-7 border-none">view more</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <h1 class="text-sans text-3xl text-red-600 tracking-wider">No books in Library</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <!-- contact form  -->
+    <div class="bg-black">
+        <div class="container mx-auto p-5 mt-20">
+            <div class="max-w-3xl mx-auto p-10 text-white">
+                <form action="">
+                    {% csrf_token %}
+                    <div class="group py-2">
+                        <label for="name" class="font-sans-serif text-lg tracking-wider text-gray-200 capitalize">Name</label>
+                        <input type="text" class="w-full outline-none border-b-2 border-black transition ease-in-out duration-150 focus:border-red-400 py-1 px-3 font-sans-serif text-black">
+                    </div>
+                    <div class="group py-2">
+                        <label for="email" class="font-sans-serif text-lg tracking-wider text-gray-200 capitalize">Email</label>
+                        <input type="email" class="w-full outline-none border-b-2 border-black transition ease-in-out duration-150 focus:border-red-400 py-1 px-3 font-sans-serif text-black">
+                    </div>
+                    <div class="group py-2">
+                        <label for="message" class="font-sans-serif text-lg tracking-wider text-gray-200 capitalize">Message</label>
+                        <textarea cols="30" rows="10" class="w-full outline-none border-b-2 border-black transition ease-in-out duration-150 focus:border-red-400 py-1 px-3 font-sans-serif text-black"></textarea>
+                    </div>
+                    <a href="#" class="font-sans-serif text-lg tracking-wider text-white border-none bg-green-500 transition ease-in-out duration-150 hover:bg-green-600 py-2 px-7">send</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}

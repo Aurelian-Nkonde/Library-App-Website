@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="container my-20 mx-auto">
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-blue-100 mb-5 p-5 shadow-lg">
+                <div class="flex items-center">
+                    <img src="/static/img/example.png" alt="profile" class="h-40 w-40 rounded-full">
+                    <div class="ml-10 border-l-2 border-green-400">
+                        <h1 class="font-sans text-lg ml-2 tracking-wider capitalize mb-3 text-gray-700">{{ user.username }}</h1>
+                        {% if user.email %}
+                        <h1 class="font-sans text-lg ml-2 tracking-wider capitalize mb-3 text-gray-700">{{ user.email }}</h1>
+                        {% else %}
+                        <h1 class="font-sans text-lg ml-2 tracking-wider  mb-3 text-gray-700">UnknownEmail@gmail.com</h1>
+                        {% endif %}
+                        <h1 class="font-sans text-lg ml-2 tracking-wider capitalize text-gray-700">{{ user.profile.city }}</h1>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="font-sans-serif shadow-lg text-lg bg-blue-300 py-2 px-8 mt-5 transition ease-in-out duration-200 capitalize hover:bg-blue-200">edit profile</a>
+        </div>
+    </div>
+{% endblock content %}

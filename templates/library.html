@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <!-- <div class="bg-green-400 p-10">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-2">
+
+                <div class="">
+                    <form action="" class="mx-auto">
+                        <input type="text" placeholder="search book.. " class="w-full py-2 border-r-2 border-blue-800 py-1 px-4 outline-none rounded-full font-sans-serif text-base text-gray-600">
+                    </form>
+                </div>
+                
+                <div class="flex justify-center items-center">
+                    <a href="{% url 'add_book' %}" class="font-sans-serif text-base text-white bg-green-800 transition capitalize ease-in-out duration-150 hover:bg-green-900 tracking-wider py-2 px-7">add book</a>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    {% if user.is_superuser %}
+    <div class="container py-10 mx-auto">
+        <div class="max-w-xl mx-auto">
+            <div class="shadow-lg p-5">
+                <h1 class="font-sans-serif text-3xl font-bold capitalize pb-4">Library current status</h1>
+                <div class="flex border-l-2 border-green-200  justify-between items-center pb-4">
+                    <h1 class="font-sans pl-2 text-base capitalize">Number of Authors</h1>
+                    {% if number_of_authors %}
+                    <h1 class="font-sans pl-2 text-base capitalize">{{ number_of_authors }}</h1>
+                    {% else %}
+                    <h1 class="font-sans pl-2 text-base capitalize text-red-600">No authors in the database</h1>
+                    {% endif %}
+                </div>
+                <div class="flex border-l-2 border-purple-500  justify-between items-center pb-4">
+                    <h1 class="font-sans pl-2 text-base capitalize">Number of Books</h1>
+                    {% if number_of_books %}
+                    <h1 class="font-sans pl-2 text-base capitalize">{{ number_of_books }}</h1>
+                    {% else %}
+                    <h1 class="font-sans pl-2 text-base capitalize text-red-600">No Books in the database</h1>
+                    {% endif %}
+                </div>
+                <div class="flex border-l-2 border-yellow-500  justify-between items-center pb-4">
+                    <h1 class="font-sans pl-2 text-base capitalize">Number of Books Available</h1>
+                    {% if number_of_books_available %}
+                    <h1 class="font-sans pl-2 text-base capitalize">{{ number_of_books_available }}</h1>
+                    {% else %}
+                    <h1 class="font-sans pl-2 text-base capitalize text-red-600">No Books Available</h1>
+                    {% endif %}
+                </div>
+                <div class="flex border-l-2 border-blue-500  justify-between items-center pb-4">
+                    <h1 class="font-sans pl-2 text-base capitalize">Number of Books Rented</h1>
+                    {% if number_of_books_rented %}
+                    <h1 class="font-sans pl-2 text-base capitalize">{{ number_of_books_rented }}</h1>
+                    {% else %}
+                    <h1 class="font-sans pl-2 text-base capitalize text-red-600">No Books Rented</h1>
+                    {% endif %}
+                </div>
+                <div class="flex border-l-2 border-green-600  justify-between items-center pb-4">
+                    <h1 class="font-sans pl-2 text-base capitalize">Number of Books Sold</h1>
+                    {% if number_of_books_sold %}
+                    <h1 class="font-sans pl-2 text-base capitalize">{{ number_of_books_sold }}</h1>
+                    {% else %}
+                    <h1 class="font-sans pl-2 text-base capitalize text-red-600">No Books Sold</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+
+    {% if user.is_superuser %}
+    <div class="container mt-5 mx-auto">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex justify-around items-center">
+                <div class=""></div>
+                <a href="{% url 'add_book' %}" class="font-sans-serif text-base text-white bg-green-800 transition capitalize ease-in-out duration-150 hover:bg-green-900 tracking-wider py-2 px-7">add book</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- list  of books -->
+    <div class="container mx-auto p-5 mt-20 mb-10">
+        <div class="max-w-5xl mx-auto">
+            <h1 class="font-sans-serif py-6 text-4xl font-weight text-gray-600 tracking-wider">list of <span class="text-green-800">books</span> !</h1>
+            <div class="grid grid-cols-3 gap-4">
+                {% if book_libs %}
+                    {% for book in book_libs %}
+                    <div class="flex  flex-col cursor-pointer">
+                        <img src="/static/img/four.jpg" alt="default" class="">
+                        <div class="bg-gray-200  shadow-lg  px-3 py-6 border-l-2 border-green-200">
+                            <h1 class="font-sans-serif text-lg text-gray-800 tracking-wider capitalize font-bold">{{ book.title }}</h1>
+                            <h1 class="font-sans-serif text-lg mb-6 text-gray-900 tracking-wider capitalize font-bold">by: <span class="font-light">{{ book.author }}</span></h1>
+                            <a href="{% url 'book_detail' book.id %}" class="font-sans-serif  text-lg text-white tracking-wider font-bold capitalize bg-green-600 transition ease-in-out duration-150 shadow-lg hover:bg-green-400 py-2 px-7 border-none">view more</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <h1 class="text-sans text-3xl text-red-500 font-bold">No books @ the moment</h1>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
